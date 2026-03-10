@@ -1254,7 +1254,7 @@
         📞 電話で相談する
       </a>
     </div>
-    <p style="margin-top:24px;font-size:13px;color:rgba(255,255,255,.45);">平日 9:00〜18:00 受付 / 土曜午前対応可</p>
+    <p style="margin-top:24px;font-size:13px;color:rgba(255,255,255,.45);">8時30分～17時（土日祝除く）</p>
   </div>
 </section>
 
@@ -1265,7 +1265,7 @@
       <div class="section-label">Contact Us</div>
       <h2 class="section-title">無料でご相談・お見積もり</h2>
       <p class="section-lead" style="margin-bottom:48px;">
-        まずはお気軽にご連絡ください。専任担当が当日中にご返答します。
+        まずはお気軽にご連絡ください。専任担当が48時間以内にご返答します。
       </p>
     </div>
     <div class="form-layout">
@@ -1276,33 +1276,33 @@
           <div class="form-staff__name">安全カバー 専任担当</div>
           <div class="form-staff__role">岩代工業株式会社 営業技術部</div>
           <div class="form-staff__msg">
-            「図面がない」「急いでいる」など、どんなご相談もお気軽にどうぞ。当日中にご回答します。
+            「図面がない」「急いでいる」など、どんなご相談もお気軽にどうぞ。48時間以内にご回答します。
           </div>
         </div>
       </div>
       <!-- フォーム -->
       <div class="form-card" style="max-width:100%;margin:0;">
-      <form>
+      <form id="inquiry-form">
         <div class="form-grid">
           <div class="form-group">
             <label class="form-label">会社名<span>*</span></label>
-            <input type="text" class="form-control" placeholder="例：株式会社○○製作所" required />
+            <input type="text" name="会社名" class="form-control" placeholder="例：株式会社○○製作所" required />
           </div>
           <div class="form-group">
             <label class="form-label">お名前<span>*</span></label>
-            <input type="text" class="form-control" placeholder="例：山田 太郎" required />
+            <input type="text" name="お名前" class="form-control" placeholder="例：山田 太郎" required />
           </div>
           <div class="form-group">
             <label class="form-label">電話番号<span>*</span></label>
-            <input type="tel" class="form-control" placeholder="例：06-0000-0000" required />
+            <input type="tel" name="電話番号" class="form-control" placeholder="例：06-0000-0000" required />
           </div>
           <div class="form-group">
             <label class="form-label">メールアドレス</label>
-            <input type="email" class="form-control" placeholder="例：yamada@example.com" />
+            <input type="email" name="メールアドレス" class="form-control" placeholder="例：yamada@example.com" />
           </div>
           <div class="form-group form-group--full">
             <label class="form-label">ご相談内容<span>*</span></label>
-            <select class="form-control" required>
+            <select name="ご相談内容" class="form-control" required>
               <option value="">選択してください</option>
               <option>回転部・軸部のカバーが必要</option>
               <option>コンベア・搬送設備のカバー</option>
@@ -1314,7 +1314,7 @@
           </div>
           <div class="form-group form-group--full">
             <label class="form-label">詳細・ご要望（任意）</label>
-            <textarea class="form-control" placeholder="設備の種類、形状、緊急度、写真の送付希望など、なんでもお書きください。"></textarea>
+            <textarea name="詳細・ご要望" class="form-control" placeholder="設備の種類、形状、緊急度、写真の送付希望など、なんでもお書きください。"></textarea>
           </div>
         </div>
         <p class="form-note">※ お問い合わせの内容は、製作・見積もり対応のみに使用します。第三者への提供はいたしません。</p>
@@ -1324,7 +1324,7 @@
         <div class="form-trust">
           <span>🔒 SSL暗号化通信</span>
           <span>📵 営業目的での使用なし</span>
-          <span>⚡ 当日中に担当者より返信</span>
+          <span>⚡ 48時間以内に担当者より返信</span>
         </div>
       </form>
       </div><!-- /.form-card -->
@@ -1379,10 +1379,10 @@
     </div>
     <div>
       <div class="footer__heading">お問い合わせ</div>
-      <a class="footer__link" href="tel:0000-00-0000">📞 00-0000-0000</a>
-      <a class="footer__link" href="mailto:info@iwashiro.example">📧 info@iwashiro.example</a>
-      <a class="footer__link" href="#">📍 所在地・アクセス</a>
-      <a class="footer__link" href="#inquiry">📝 お問い合わせフォーム</a>
+      <a class="footer__link" href="tel:03-3756-1511">📞 03-3756-1511</a>
+      <a class="footer__link" href="mailto:customer@iwashiro.co.jp">📧 customer@iwashiro.co.jp</a>
+      <a class="footer__link" href="https://www.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%A4%A7%E7%94%B0%E5%8C%BA%E7%9F%A2%E5%8F%A32%E4%B8%81%E7%9B%AE6%E7%95%AA7%E5%8F%B7" target="_blank" rel="noopener">📍 所在地・アクセス</a>
+      <a class="footer__link" href="https://iwashiro.co.jp/inquiry/" target="_blank" rel="noopener">📝 お問い合わせフォーム</a>
     </div>
   </div>
   <div class="footer__bottom">
@@ -1428,10 +1428,19 @@
     observer.observe(el);
   });
 
-  // Form submit (demo)
-  document.querySelector('form').addEventListener('submit', e => {
+  // フォーム送信：入力内容をメール本文にして mailto で開く
+  document.getElementById('inquiry-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    alert('お問い合わせありがとうございます。\n担当者より本日中にご連絡いたします。');
+    const form = this;
+    const subject = encodeURIComponent('【安全カバー】お問い合わせ');
+    const parts = [];
+    ['会社名', 'お名前', '電話番号', 'メールアドレス', 'ご相談内容', '詳細・ご要望'].forEach(function(name) {
+      const el = form.querySelector('[name="' + name + '"]');
+      if (el && el.value) parts.push(name + '：' + el.value.replace(/\r?\n/g, ' '));
+    });
+    const body = encodeURIComponent(parts.join('\n'));
+    const mailto = 'mailto:customer@iwashiro.co.jp?subject=' + subject + '&body=' + body;
+    window.location.href = mailto;
   });
 </script>
 
