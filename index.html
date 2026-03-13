@@ -771,8 +771,9 @@
     }
     .modal-close:hover { background: var(--accent); }
     .modal-hero img {
-      width: 100%; height: 380px;
-      object-fit: cover; object-position: center;
+      width: 100%; height: auto;
+      object-fit: contain;
+      background: var(--light);
       border-radius: var(--radius) var(--radius) 0 0;
       display: block;
     }
@@ -790,9 +791,10 @@
       gap: 12px; margin-bottom: 28px;
     }
     .modal-gallery img {
-      width: 100%; height: 180px;
-      object-fit: cover; object-position: center;
+      width: 100%; height: auto;
+      object-fit: contain;
       border-radius: 8px; display: block;
+      background: var(--light);
     }
     .modal-specs {
       display: grid; grid-template-columns: repeat(3, 1fr);
@@ -812,8 +814,18 @@
     .modal-spec__text {
       font-size: 14px; font-weight: 700; color: var(--navy);
     }
+    .modal-subtitle {
+      font-size: 16px; font-weight: 700;
+      color: var(--navy); margin-bottom: 12px;
+      padding-left: 12px;
+      border-left: 3px solid var(--accent);
+    }
+    .modal-gallery--2col {
+      grid-template-columns: repeat(2, 1fr);
+    }
     @media (max-width: 600px) {
       .modal-gallery { grid-template-columns: 1fr 1fr; }
+      .modal-gallery--2col { grid-template-columns: 1fr; }
       .modal-specs { grid-template-columns: 1fr; }
       .modal-hero img { height: 240px; }
       .modal-body { padding: 20px; }
@@ -1558,6 +1570,11 @@
         <img src="images/pet-cover-01.webp" alt="透明PET樹脂安全カバー - 正面" />
         <img src="images/pet-cover-03.webp" alt="透明PET樹脂安全カバー - 正面（別角度）" />
         <img src="images/pet-cover-06.webp" alt="透明PET樹脂安全カバー - 俯瞰" />
+      </div>
+      <h4 class="modal-subtitle">実際の納品・設置状況</h4>
+      <div class="modal-gallery modal-gallery--2col">
+        <img src="images/pet-cover-installed-close.webp" alt="納品後 - カバー閉じた状態" />
+        <img src="images/pet-cover-installed-open.webp" alt="納品後 - カバー開いた状態" />
       </div>
       <div class="modal-specs">
         <div class="modal-spec">
