@@ -721,6 +721,104 @@
       margin-top: 4px;
     }
 
+    /* ===== SHOWCASE CLICKABLE ===== */
+    .showcase-card--clickable { cursor: pointer; position: relative; }
+    .showcase-card--clickable::after {
+      content: '';
+      position: absolute; inset: 0;
+      border: 2px solid transparent;
+      border-radius: var(--radius);
+      transition: border-color .2s;
+      pointer-events: none;
+    }
+    .showcase-card--clickable:hover::after {
+      border-color: var(--accent);
+    }
+    .showcase-card__badge {
+      display: inline-block;
+      background: var(--accent); color: #fff;
+      font-size: 11px; font-weight: 700;
+      padding: 2px 10px; border-radius: 20px;
+      margin-left: 8px; vertical-align: middle;
+    }
+
+    /* ===== MODAL ===== */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,.7);
+      backdrop-filter: blur(4px);
+      align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .modal-overlay.is-open { display: flex; }
+    .modal-content {
+      background: var(--white);
+      border-radius: var(--radius);
+      max-width: 860px; width: 100%;
+      max-height: 90vh; overflow-y: auto;
+      box-shadow: 0 24px 64px rgba(0,0,0,.3);
+      position: relative;
+    }
+    .modal-close {
+      position: absolute; top: 16px; right: 16px;
+      width: 40px; height: 40px;
+      border: none; border-radius: 50%;
+      background: var(--navy); color: #fff;
+      font-size: 20px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 10; transition: background .2s;
+    }
+    .modal-close:hover { background: var(--accent); }
+    .modal-hero img {
+      width: 100%; height: 380px;
+      object-fit: cover; object-position: center;
+      border-radius: var(--radius) var(--radius) 0 0;
+      display: block;
+    }
+    .modal-body { padding: 32px; }
+    .modal-body h3 {
+      font-size: 22px; font-weight: 900;
+      color: var(--navy); margin-bottom: 8px;
+    }
+    .modal-body .modal-lead {
+      font-size: 15px; color: var(--muted);
+      margin-bottom: 24px; line-height: 1.7;
+    }
+    .modal-gallery {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 12px; margin-bottom: 28px;
+    }
+    .modal-gallery img {
+      width: 100%; height: 180px;
+      object-fit: cover; object-position: center;
+      border-radius: 8px; display: block;
+    }
+    .modal-specs {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .modal-spec {
+      background: var(--light);
+      border-radius: 8px; padding: 18px;
+      text-align: center;
+    }
+    .modal-spec__icon { font-size: 24px; margin-bottom: 6px; }
+    .modal-spec__label {
+      font-size: 11px; font-weight: 700; color: var(--accent);
+      text-transform: uppercase; letter-spacing: .1em;
+      margin-bottom: 4px;
+    }
+    .modal-spec__text {
+      font-size: 14px; font-weight: 700; color: var(--navy);
+    }
+    @media (max-width: 600px) {
+      .modal-gallery { grid-template-columns: 1fr 1fr; }
+      .modal-specs { grid-template-columns: 1fr; }
+      .modal-hero img { height: 240px; }
+      .modal-body { padding: 20px; }
+    }
+
     /* ===== CTA — dramatic BG ===== */
     .cta-section {
       background-image: url('images/cta-factory-dramatic.jpg');
@@ -1207,11 +1305,11 @@
           <div class="showcase-card__sub">コスト重視・一般工場・屋内設備に対応</div>
         </div>
       </div>
-      <div class="showcase-card">
+      <div class="showcase-card showcase-card--clickable" onclick="document.getElementById('caseStudyModal').classList.add('is-open')" role="button" tabindex="0">
         <img src="images/cover-showcase-iron.jpg" alt="ポリカーボネート製安全カバー設置例" class="showcase-card__img" />
         <div class="showcase-card__caption">
-          <div class="showcase-card__title">透明ポリカーボネート</div>
-          <div class="showcase-card__sub">内部を目視確認しながら安全管理が必要な設備に</div>
+          <div class="showcase-card__title">透明PET樹脂（納品事例あり）</div>
+          <div class="showcase-card__sub">内部を目視確認しながら安全管理が必要な設備に <span class="showcase-card__badge">事例を見る →</span></div>
         </div>
       </div>
     </div>
@@ -1441,6 +1539,56 @@
     const body = encodeURIComponent(parts.join('\n'));
     const mailto = 'mailto:customer@iwashiro.co.jp?subject=' + subject + '&body=' + body;
     window.location.href = mailto;
+  });
+</script>
+
+<!-- ===== CASE STUDY MODAL ===== -->
+<div class="modal-overlay" id="caseStudyModal" onclick="if(event.target===this)this.classList.remove('is-open')">
+  <div class="modal-content">
+    <button class="modal-close" onclick="document.getElementById('caseStudyModal').classList.remove('is-open')" aria-label="閉じる">&times;</button>
+    <div class="modal-hero">
+      <img src="images/pet-cover-03.webp" alt="透明PET樹脂安全カバー - フレーム全体" />
+    </div>
+    <div class="modal-body">
+      <h3>納品事例：透明PET樹脂 安全カバー</h3>
+      <p class="modal-lead">
+        内部の状態を目視確認できる透明PET樹脂パネルを採用。アルミフレームとの組み合わせで軽量かつ高い視認性を実現しました。
+      </p>
+      <div class="modal-gallery">
+        <img src="images/pet-cover-01.webp" alt="透明PET樹脂安全カバー - 正面" />
+        <img src="images/pet-cover-03.webp" alt="透明PET樹脂安全カバー - 正面（別角度）" />
+        <img src="images/pet-cover-06.webp" alt="透明PET樹脂安全カバー - 俯瞰" />
+      </div>
+      <div class="modal-specs">
+        <div class="modal-spec">
+          <div class="modal-spec__icon">🔍</div>
+          <div class="modal-spec__label">Material</div>
+          <div class="modal-spec__text">透明PET樹脂パネル<br>＋ アルミフレーム</div>
+        </div>
+        <div class="modal-spec">
+          <div class="modal-spec__icon">👁</div>
+          <div class="modal-spec__label">Feature</div>
+          <div class="modal-spec__text">内部目視可能<br>軽量 / 耐衝撃性</div>
+        </div>
+        <div class="modal-spec">
+          <div class="modal-spec__icon">⚙️</div>
+          <div class="modal-spec__label">Application</div>
+          <div class="modal-spec__text">稼働中の目視確認が<br>必要なライン</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  // ESCキーでモーダルを閉じる
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.getElementById('caseStudyModal').classList.remove('is-open');
+    }
+  });
+  // Enterキーでもカードを開けるように
+  document.querySelector('.showcase-card--clickable').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') document.getElementById('caseStudyModal').classList.add('is-open');
   });
 </script>
 
