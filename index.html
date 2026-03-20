@@ -97,6 +97,23 @@
       color: #fff; letter-spacing: .06em;
     }
     .nav__logo span { color: var(--accent2); }
+    .nav__right {
+      display: flex; align-items: center; gap: 16px;
+    }
+    .nav__phone {
+      display: flex; align-items: center; gap: 6px;
+      color: rgba(255,255,255,.9);
+      font-size: 14px; font-weight: 700;
+      letter-spacing: .03em;
+    }
+    .nav__phone-icon {
+      display: none;
+      width: 40px; height: 40px;
+      background: var(--accent); color: #fff;
+      border-radius: 50%;
+      align-items: center; justify-content: center;
+      font-size: 18px;
+    }
     .nav__cta {
       background: var(--accent); color: #fff;
       font-size: 13px; font-weight: 700;
@@ -178,9 +195,13 @@
       background: #fff;
       border: 1.5px solid var(--border);
       border-radius: var(--radius);
-      padding: 32px 28px;
+      padding: 0;
       position: relative;
+      overflow: hidden;
       transition: box-shadow .2s, transform .2s;
+    }
+    .pain-card__body {
+      padding: 20px 28px 32px;
     }
     .pain-card:hover {
       box-shadow: var(--shadow);
@@ -588,6 +609,8 @@
       .journey__phase-badge { font-size: 10px; padding: 3px 7px; }
       .hero__stat-grid { grid-template-columns: 1fr 1fr; }
       .form-trust { flex-direction: column; align-items: center; gap: 10px; }
+      .nav__phone-label { display: none; }
+      .nav__phone-icon { display: flex; }
     }
 
     /* ===== ANIMATIONS ===== */
@@ -638,12 +661,10 @@
 
     /* pain card image */
     .pain-card__img {
-      width: calc(100% + 56px);
-      margin: -32px -28px 20px;
+      width: 100%;
       height: 170px;
       object-fit: cover;
       object-position: center;
-      border-radius: var(--radius) var(--radius) 0 0;
       display: block;
     }
 
@@ -895,7 +916,13 @@
 <nav class="nav">
   <div class="nav__inner">
     <div class="nav__logo">岩代工業<span>株式会社</span></div>
-    <a href="#inquiry" class="nav__cta">無料で相談する →</a>
+    <div class="nav__right">
+      <a href="tel:03-3756-1511" class="nav__phone">
+        <span class="nav__phone-icon">📞</span>
+        <span class="nav__phone-label">📞 03-3756-1511</span>
+      </a>
+      <a href="#inquiry" class="nav__cta">ご相談・お見積もり →</a>
+    </div>
   </div>
 </nav>
 
@@ -917,7 +944,7 @@
       <div class="hero__ctas animate delay-3">
         <a href="#inquiry" class="btn btn--primary">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14z"/></svg>
-          無料で相談・見積もり
+          ご相談・お見積もり
         </a>
         <a href="#journey" class="btn btn--outline">
           製作の流れを見る ↓
@@ -973,31 +1000,37 @@
     <div class="pain-grid">
       <div class="pain-card">
         <img src="images/pain-exposed-machine.jpg" alt="カバーなしの危険な回転部" class="pain-card__img" />
-        <div class="pain-card__icon">📐</div>
-        <div class="pain-card__title">既製品が合わない</div>
-        <p class="pain-card__text">
-          設備の形状が特殊で市販の安全カバーが入らない。メーカー製は高すぎる、または廃番になっている。図面もないから依頼先が見つからない。
-        </p>
+        <div class="pain-card__body">
+          <div class="pain-card__icon">📐</div>
+          <div class="pain-card__title">既製品が合わない</div>
+          <p class="pain-card__text">
+            設備の形状が特殊で市販の安全カバーが入らない。メーカー製は高すぎる、または廃番になっている。図面もないから依頼先が見つからない。
+          </p>
+        </div>
       </div>
       <div class="pain-card">
         <img src="images/pain-inspection-doc.jpg" alt="労基署安全監査シーン" class="pain-card__img" />
-        <div class="pain-card__icon">⏱</div>
-        <div class="pain-card__title">労基署指摘で急いでいる</div>
-        <p class="pain-card__text">
-          定期監督や自主点検で「〇月末までに改善」の通達が来た。でも発注先を探す時間も、図面を作る時間もない。急いでいるのに断られる。
-        </p>
+        <div class="pain-card__body">
+          <div class="pain-card__icon">⏱</div>
+          <div class="pain-card__title">労基署指摘で急いでいる</div>
+          <p class="pain-card__text">
+            定期監督や自主点検で「〇月末までに改善」の通達が来た。でも発注先を探す時間も、図面を作る時間もない。急いでいるのに断られる。
+          </p>
+        </div>
       </div>
       <div class="pain-card">
         <img src="images/pain-cost-estimate.jpg" alt="見積もり・図面の比較" class="pain-card__img" />
-        <div class="pain-card__icon">💰</div>
-        <div class="pain-card__title">コスト・品質・納期が全部心配</div>
-        <p class="pain-card__text">
-          安くても耐久性が低ければ意味がない。鉄板一枚を溶接するだけなのに見積もりが高い。発注したら届くまで2ヶ月かかった経験がある。
-        </p>
+        <div class="pain-card__body">
+          <div class="pain-card__icon">💰</div>
+          <div class="pain-card__title">コスト・品質・納期が全部心配</div>
+          <p class="pain-card__text">
+            安くても耐久性が低ければ意味がない。鉄板一枚を溶接するだけなのに見積もりが高い。発注したら届くまで2ヶ月かかった経験がある。
+          </p>
+        </div>
       </div>
     </div>
     <div style="text-align:center;">
-      <a href="#inquiry" class="btn btn--navy" style="font-size:15px;">→ これらの課題、無料でご相談ください</a>
+      <a href="#inquiry" class="btn btn--navy" style="font-size:15px;">→ これらの課題、お気軽にご相談ください</a>
     </div>
   </div>
 </section>
@@ -1144,7 +1177,7 @@
 
     <div style="text-align:center;margin-top:56px;">
       <a href="#inquiry" class="btn btn--primary" style="font-size:16px;padding:18px 48px;">
-        ↓ まずはSTEP 01から相談する（無料）
+        ↓ まずはSTEP 01から相談する
       </a>
     </div>
   </div>
@@ -1337,7 +1370,7 @@
       <span>課題が解決する</span>かもしれません
     </h2>
     <p class="cta-section__lead">
-      見積もりや現地調査は完全無料。しつこい営業は一切しません。
+      見積もりや現地調査は無料です。ご相談だけでも歓迎です。
     </p>
     <div class="cta-cards">
       <div class="cta-card">
@@ -1352,15 +1385,15 @@
       </div>
       <div class="cta-card">
         <div class="cta-card__icon">🔒</div>
-        <div class="cta-card__title">しつこい営業なし</div>
-        <div class="cta-card__text">ご連絡後に強引な売込みは行いません。ご安心ください</div>
+        <div class="cta-card__title">ご相談だけでも歓迎</div>
+        <div class="cta-card__text">まだ検討段階でも大丈夫です。お気軽にご連絡ください</div>
       </div>
     </div>
     <div class="cta-section__btns">
       <a href="#inquiry" class="btn btn--primary" style="font-size:17px;padding:20px 48px;">
-        フォームで相談する（無料）
+        フォームで相談する
       </a>
-      <a href="tel:0000-00-0000" class="btn btn--outline" style="font-size:17px;padding:20px 40px;">
+      <a href="tel:03-3756-1511" class="btn btn--outline" style="font-size:17px;padding:20px 40px;">
         📞 電話で相談する
       </a>
     </div>
@@ -1373,7 +1406,7 @@
   <div class="container">
     <div class="text-center">
       <div class="section-label">Contact Us</div>
-      <h2 class="section-title">無料でご相談・お見積もり</h2>
+      <h2 class="section-title">ご相談・お見積もり</h2>
       <p class="section-lead" style="margin-bottom:48px;">
         まずはお気軽にご連絡ください。専任担当が48時間以内にご返答します。
       </p>
@@ -1429,11 +1462,11 @@
         </div>
         <p class="form-note">※ お問い合わせの内容は、製作・見積もり対応のみに使用します。第三者への提供はいたしません。</p>
         <button type="submit" class="btn btn--primary form-submit">
-          無料で相談する →
+          送信する（48時間以内にご回答します）
         </button>
         <div class="form-trust">
           <span>🔒 SSL暗号化通信</span>
-          <span>📵 営業目的での使用なし</span>
+          <span>📵 ご相談だけでも歓迎です</span>
           <span>⚡ 48時間以内に担当者より返信</span>
         </div>
       </form>
