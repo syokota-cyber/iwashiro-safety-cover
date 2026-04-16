@@ -898,10 +898,94 @@
       padding-top: 12px;
       border-top: 1px solid rgba(255,255,255,.15);
     }
+    /* ===== SOLUTION SECTIONS ===== */
+    .solution {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+    .solution--reverse { direction: rtl; }
+    .solution--reverse > * { direction: ltr; }
+    .solution__img-wrap {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .solution__img-wrap img {
+      width: 100%; height: 320px;
+      object-fit: cover; display: block;
+    }
+    .solution__body {}
+    .solution__tag {
+      display: inline-block;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .08em;
+      padding: 4px 12px;
+      border-radius: 100px;
+      background: #fff0e8;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .solution__title {
+      font-size: clamp(20px, 3vw, 26px);
+      font-weight: 900; line-height: 1.35;
+      color: var(--navy); margin-bottom: 14px;
+    }
+    .solution__lead {
+      font-size: 14px; color: var(--muted);
+      line-height: 1.8; margin-bottom: 20px;
+    }
+    .solution__points {
+      list-style: none; padding: 0; margin: 0 0 24px;
+    }
+    .solution__points li {
+      font-size: 14px; color: var(--text);
+      padding: 8px 0 8px 28px;
+      position: relative; line-height: 1.6;
+      border-bottom: 1px solid var(--light);
+    }
+    .solution__points li::before {
+      content: '✓';
+      position: absolute; left: 0; top: 8px;
+      color: var(--accent); font-weight: 700;
+    }
+    .solution__stat {
+      display: inline-flex; align-items: baseline; gap: 6px;
+      background: var(--light);
+      border-radius: 8px; padding: 10px 18px;
+      margin-bottom: 20px;
+    }
+    .solution__stat-num {
+      font-size: 28px; font-weight: 900;
+      color: var(--accent);
+    }
+    .solution__stat-label {
+      font-size: 13px; color: var(--muted); font-weight: 600;
+    }
+    .solution__cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 700;
+      color: var(--accent);
+      padding: 10px 0;
+      border: none; background: none; cursor: pointer;
+      transition: gap .2s;
+    }
+    .solution__cta:hover { gap: 10px; }
+    .solution-divider {
+      border: none;
+      border-top: 1.5px solid var(--border);
+      margin: 64px auto;
+      max-width: 120px;
+    }
+
     @media (max-width: 900px) {
       .form-layout { grid-template-columns: 1fr; }
       .form-staff { display: none; }
       .showcase-grid { grid-template-columns: 1fr 1fr; }
+      .solution { grid-template-columns: 1fr; gap: 28px; }
+      .solution--reverse { direction: ltr; }
     }
     @media (max-width: 600px) {
       .showcase-grid { grid-template-columns: 1fr; }
@@ -1362,6 +1446,95 @@
   </div>
 </section>
 
+<!-- ===== SOLUTION SECTIONS ===== -->
+<section class="section section--gray" id="solutions">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label">Solution</div>
+      <h2 class="section-title">現場の"よくある課題"に<br>安全カバーで応える</h2>
+      <p class="section-lead">
+        メーカーの保証範囲外、図面のない設備、多様な人材が混在する現場——<br>
+        既製品では解決できない課題に、オーダーメイドだからこそ応えられます。
+      </p>
+    </div>
+
+    <!-- SOLUTION 1: コンベア結節点 -->
+    <div class="solution">
+      <div class="solution__img-wrap">
+        <img src="images/solution-conveyor-junction.jpg" alt="異なるメーカーのコンベア乗り継ぎ部分" />
+      </div>
+      <div class="solution__body">
+        <span class="solution__tag">CONVEYOR JUNCTION</span>
+        <h3 class="solution__title">メーカーが違うコンベア、<br>つなぎ目のカバーどうしていますか？</h3>
+        <div class="solution__stat">
+          <span class="solution__stat-num">32.6%</span>
+          <span class="solution__stat-label">製造業の死亡災害で最多は<br>挟まれ・巻き込まれ</span>
+        </div>
+        <p class="solution__lead">
+          A社製とB社製のコンベアが直列に並ぶ生産ライン。ベルト幅・フレーム高さ・搬送速度が異なる乗り継ぎ部分には、どちらのメーカーの純正カバーも適合しません。最も危険な箇所が無防備のまま放置されていませんか？
+        </p>
+        <ul class="solution__points">
+          <li>現場採寸で両方の機器に同時にフィットするカバーを設計</li>
+          <li>メーカーに縛られない独立した第三者だから対応可能</li>
+          <li>設計・製作・取付まで自社一貫——分割発注の手戻りなし</li>
+        </ul>
+        <a href="#inquiry" class="solution__cta">この課題について相談する →</a>
+      </div>
+    </div>
+
+    <hr class="solution-divider" />
+
+    <!-- SOLUTION 2: レトロフィット -->
+    <div class="solution solution--reverse">
+      <div class="solution__img-wrap">
+        <img src="images/solution-pokayoke.jpg" alt="メーカーサポート終了設備への後付けカバー" />
+      </div>
+      <div class="solution__body">
+        <span class="solution__tag">RETROFIT</span>
+        <h3 class="solution__title">メーカーが撤退した設備、<br>カバーの替えが手に入らない</h3>
+        <div class="solution__stat">
+          <span class="solution__stat-num">445万円</span>
+          <span class="solution__stat-label">ライン停止1日あたりの<br>平均損失額</span>
+        </div>
+        <p class="solution__lead">
+          導入から10年以上が経ち、モデル変更や部品供給終了で純正カバーが入手不能に。かといって設備ごと入替えれば数千万円規模の投資と長期の生産停止が必要です。
+        </p>
+        <ul class="solution__points">
+          <li>図面がなくても現場採寸からリバースエンジニアリングで対応</li>
+          <li>既存フレームにボルトオンで後付けできる設計</li>
+          <li>現行の安全基準へのアップグレードも同時に実現</li>
+        </ul>
+        <a href="#inquiry" class="solution__cta">この課題について相談する →</a>
+      </div>
+    </div>
+
+    <hr class="solution-divider" />
+
+    <!-- SOLUTION 3: ポカヨケ -->
+    <div class="solution">
+      <div class="solution__img-wrap">
+        <img src="images/solution-retrofit.jpg" alt="ポカヨケ安全カバーが設置された製造現場" />
+      </div>
+      <div class="solution__body">
+        <span class="solution__tag">POKA-YOKE</span>
+        <h3 class="solution__title">"読めなくても安全"な<br>現場をつくる</h3>
+        <p class="solution__lead">
+          経験の浅い新人、多様なバックグラウンドを持つスタッフ、夜勤で注意力が落ちる時間帯——注意書きや口頭指示だけに頼る安全対策には限界があります。人は必ずミスをする。ポカヨケカバーは、その前提に立った物理的な安全対策です。
+        </p>
+        <ul class="solution__points">
+          <li>言語や経験に依存しない物理的なアクセス遮断——知らなくても、手が届かない</li>
+          <li>色分け・形状ガイドで正しい部品しか通らない構造（誤投入防止）</li>
+          <li>透明素材で内部が見えるから異常にすぐ気づける（ビジュアルマネジメント）</li>
+        </ul>
+        <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px;">
+          多国籍のスタッフが働く現場でも、カバーによる物理的な防護は言語に関係なく全員を守ります。多言語教育と併用することで、より確実な安全体制を実現できます。
+        </p>
+        <a href="#inquiry" class="solution__cta">この課題について相談する →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== CTA ===== -->
 <section class="cta-section">
   <div class="cta-section__inner container">
@@ -1453,6 +1626,8 @@
               <option>高温・高圧部分の安全カバー</option>
               <option>労基署・行政指摘への対応</option>
               <option>既存カバーの修理・交換</option>
+              <option>異なるメーカー間のコンベア結節部カバー</option>
+              <option>メーカーサポート終了設備のカバー交換</option>
               <option>まだ内容が決まっていない（相談したい）</option>
             </select>
           </div>
