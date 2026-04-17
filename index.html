@@ -321,6 +321,11 @@
       display: grid; grid-template-columns: repeat(2, 1fr);
       gap: 28px;
     }
+    .features-grid .feature-card:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      max-width: calc(50% - 14px);
+      margin: 0 auto;
+    }
     .feature-card {
       display: flex; gap: 20px;
       padding: 32px;
@@ -347,7 +352,7 @@
 
     /* ===== PROCESS ===== */
     .process-steps {
-      display: grid; grid-template-columns: repeat(5, 1fr);
+      display: grid; grid-template-columns: repeat(7, 1fr);
       gap: 0;
       position: relative;
     }
@@ -1125,7 +1130,7 @@
   <div class="container">
     <div class="text-center">
       <div class="section-label">Customer Journey</div>
-      <h2 class="section-title">お問い合わせから納品まで<br>ストレスゼロの5ステップ</h2>
+      <h2 class="section-title">お問い合わせから納品まで<br>ストレスゼロの7ステップ</h2>
       <p class="section-lead">
         図面不要・現地調査無料。担当者が一貫してサポートするから、初めての方も安心です。
       </p>
@@ -1147,7 +1152,7 @@
           <div class="journey__step-title">課題を感じた瞬間に、すぐ相談</div>
           <div class="journey__step-desc">
             「危険な箇所がある」「指摘を受けた」——そのタイミングでOKです。電話・メールで相談可能。専任担当がヒアリングします。<br>
-            <em style="color:var(--accent);font-style:normal;font-weight:700;font-size:13px;">▶ 具体例：「モーター軸が露出している。写真を送れば見積もりできますか？」→ その日のうちに回答</em>
+            <em style="color:var(--accent);font-style:normal;font-weight:700;font-size:13px;">▶ 具体例：「モーター軸が露出している。写真を送れば見積もりできますか？」</em>
           </div>
           <div class="journey__chips">
             <span class="journey__chip">📞 電話相談</span>
@@ -1169,9 +1174,9 @@
         </div>
         <div class="journey__content">
           <div class="journey__step-num">STEP 02</div>
-          <div class="journey__step-title">現地調査・採寸（図面不要）</div>
+          <div class="journey__step-title">現地確認</div>
           <div class="journey__step-desc">
-            担当スタッフが現地へ訪問。設備の形状・素材・用途を確認し、最適な仕様を提案します。図面がなくても大丈夫。現場採寸でそのまま製作に進めます。<br>
+            担当スタッフが現地へ訪問。設備の形状・素材・用途・設置環境を確認し、現場採寸を行います。図面がなくても大丈夫です。<br>
             <em style="color:var(--accent);font-style:normal;font-weight:700;font-size:13px;">▶ 具体例：大阪府内の食品工場では、既製品が入らない複雑形状のコンベア部分を現場採寸だけで対応</em>
           </div>
           <div class="journey__chips">
@@ -1179,7 +1184,7 @@
             <span class="journey__chip--action journey__chip">訪問エリア：全国対応</span>
           </div>
           <p class="journey__step-note" style="margin-top:8px;font-size:12px;color:var(--muted);">※首都圏・関東地方以外は別途交通費などをいただく場合があります。</p>
-          <img src="images/journey-step2-survey.jpg" alt="現場採寸のシーン" class="journey__step-img" />
+          <img src="images/journey-step2-survey.jpg" alt="現場確認のシーン" class="journey__step-img" />
         </div>
       </div>
 
@@ -1189,25 +1194,71 @@
           <span class="journey__phase-badge phase--3">検討</span>
         </div>
         <div class="journey__center">
-          <div class="journey__dot">📄</div>
+          <div class="journey__dot">💡</div>
           <div class="journey__line"></div>
         </div>
         <div class="journey__content">
           <div class="journey__step-num">STEP 03</div>
-          <div class="journey__step-title">明瞭見積もり・仕様確認</div>
+          <div class="journey__step-title">構想検討</div>
           <div class="journey__step-desc">
-            材質（SUS、鉄、アルミ、樹脂）・開口方式・表面処理など選択肢とともに見積書を提出。複数案を比較できるので、予算と用途に合った判断ができます。<br>
-            <em style="color:var(--accent);font-style:normal;font-weight:700;font-size:13px;">▶ 具体例：「ステンレス仕上げ vs 鉄板塗装」の2案を提示し、予算に合わせて選んでいただいたケース</em>
+            現地確認の結果をもとに、材質（SUS、鉄、アルミ、樹脂）・開口方式・表面処理など最適な仕様を検討。複数案をご提案し、お客様と一緒に方向性を決めます。<br>
+            <em style="color:var(--accent);font-style:normal;font-weight:700;font-size:13px;">▶ 具体例：「ステンレス仕上げ vs 鉄板塗装」の2案を提示し、用途と予算に合わせて選んでいただいたケース</em>
           </div>
           <div class="journey__chips">
-            <span class="journey__chip">見積書は即日〜3日</span>
             <span class="journey__chip">複数案比較可</span>
+            <span class="journey__chip">最適仕様を提案</span>
           </div>
-          <img src="images/journey-step3-quote.jpg" alt="CAD設計・見積書作成のシーン" class="journey__step-img" />
+          <img src="images/journey-step3-quote.jpg" alt="構想検討・設計のシーン" class="journey__step-img" />
         </div>
       </div>
 
       <!-- STEP 4 -->
+      <div class="journey__step">
+        <div class="journey__phase">
+          <span class="journey__phase-badge phase--4">見積</span>
+        </div>
+        <div class="journey__center">
+          <div class="journey__dot">📄</div>
+          <div class="journey__line"></div>
+        </div>
+        <div class="journey__content">
+          <div class="journey__step-num">STEP 04</div>
+          <div class="journey__step-title">見積提出</div>
+          <div class="journey__step-desc">
+            確定した仕様をもとに、明瞭な見積書を提出します。材料費・加工費・取付費など内訳を明示するので、社内稟議にもそのまま使えます。<br>
+            <em style="color:var(--accent);font-style:normal;font-weight:700;font-size:13px;">▶ 具体例：見積書は即日〜3営業日で提出。急ぎの場合はご相談ください</em>
+          </div>
+          <div class="journey__chips">
+            <span class="journey__chip">見積書は即日〜3日</span>
+            <span class="journey__chip">内訳明示</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 5 -->
+      <div class="journey__step">
+        <div class="journey__phase">
+          <span class="journey__phase-badge phase--5">承認</span>
+        </div>
+        <div class="journey__center">
+          <div class="journey__dot">✍️</div>
+          <div class="journey__line"></div>
+        </div>
+        <div class="journey__content">
+          <div class="journey__step-num">STEP 05</div>
+          <div class="journey__step-title">承認・注文</div>
+          <div class="journey__step-desc">
+            見積内容にご納得いただけましたら、正式にご注文ください。注文書の受領をもって製作を開始します。<br>
+            <em style="color:var(--accent);font-style:normal;font-weight:700;font-size:13px;">▶ 具体例：社内稟議が通り次第、メールまたはFAXで注文書をお送りいただくだけでOK</em>
+          </div>
+          <div class="journey__chips">
+            <span class="journey__chip">注文書受領で着手</span>
+            <span class="journey__chip">稟議サポート可</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 6 -->
       <div class="journey__step">
         <div class="journey__phase">
           <span class="journey__phase-badge phase--4">製作</span>
@@ -1217,11 +1268,11 @@
           <div class="journey__line"></div>
         </div>
         <div class="journey__content">
-          <div class="journey__step-num">STEP 04</div>
-          <div class="journey__step-title">自社一貫製作・進捗報告</div>
+          <div class="journey__step-num">STEP 06</div>
+          <div class="journey__step-title">製作</div>
           <div class="journey__step-desc">
             設計・切断・溶接・仕上げ・検査まで自社完結。外注なしで品質を管理します。製作状況はメールまたはLINEで随時共有するので、納期の見通しが常に分かります。<br>
-            <em style="color:var(--accent);font-style:normal;font-weight:700;font-size:13px;">▶ 具体例：労基署の改善期限まで3週間のケースで、緊急対応として最短8日で納品実績あり</em>
+            <em style="color:var(--accent);font-style:normal;font-weight:700;font-size:13px;">▶ 具体例：改善期限まで3週間のケースで、緊急対応として最短8日で納品実績あり</em>
           </div>
           <div class="journey__chips">
             <span class="journey__chip">自社工場製作</span>
@@ -1231,7 +1282,7 @@
         </div>
       </div>
 
-      <!-- STEP 5 -->
+      <!-- STEP 7 -->
       <div class="journey__step">
         <div class="journey__phase">
           <span class="journey__phase-badge phase--5">完了</span>
@@ -1240,8 +1291,8 @@
           <div class="journey__dot">✅</div>
         </div>
         <div class="journey__content">
-          <div class="journey__step-num">STEP 05</div>
-          <div class="journey__step-title">現場取付・動作確認・アフターサポート</div>
+          <div class="journey__step-num">STEP 07</div>
+          <div class="journey__step-title">納品・設置</div>
           <div class="journey__step-desc">
             取付工事も対応可能。設置後に「ドアの開きが当たる」「増設したい」などが出ても、担当者がそのまま対応します。納品後も安心の継続サポートを提供。<br>
             <em style="color:var(--accent);font-style:normal;font-weight:700;font-size:13px;">▶ 具体例：設置後に設備レイアウト変更があったお客様に、追加カバーを優先対応した実績</em>
@@ -1269,7 +1320,7 @@
   <div class="container">
     <div class="text-center">
       <div class="section-label">Why Iwashiro</div>
-      <h2 class="section-title">岩代工業株式会社が選ばれる<br>4つの理由</h2>
+      <h2 class="section-title">岩代工業株式会社が選ばれる<br>5つの理由</h2>
     </div>
     <div class="features-grid">
       <div class="feature-card">
@@ -1308,6 +1359,15 @@
           </p>
         </div>
       </div>
+      <div class="feature-card">
+        <div class="feature-card__icon">🔄</div>
+        <div class="feature-card__body">
+          <div class="feature-card__title">既存カバーのカスタマイズ対応</div>
+          <p class="feature-card__text">
+            今お使いのカバーを使いやすい様にカスタマイズします。「開口部を広げたい」「点検窓を追加したい」「ヒンジの向きを変えたい」など、既存品の改善もお任せください。買い替え不要で現場の使い勝手が向上します。
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1317,7 +1377,7 @@
   <div class="container">
     <div class="text-center">
       <div class="section-label">Delivery Timeline</div>
-      <h2 class="section-title">最短10日で納品できる<br>製作フロー</h2>
+      <h2 class="section-title">最短13日で納品できる<br>製作フロー</h2>
       <p class="section-lead">無駄な中間工程を省き、自社一貫製作でスピードと品質を両立</p>
     </div>
     <div class="process-steps">
@@ -1329,27 +1389,39 @@
       </div>
       <div class="process-step">
         <div class="process-step__num">2</div>
-        <div class="process-step__title">現地調査・採寸</div>
-        <p class="process-step__text">無料訪問。図面不要で採寸</p>
+        <div class="process-step__title">現地確認</div>
+        <p class="process-step__text">現地訪問で設備・環境を確認</p>
         <span class="process-step__days">Day 2〜3</span>
       </div>
       <div class="process-step">
         <div class="process-step__num">3</div>
-        <div class="process-step__title">見積もり・確認</div>
-        <p class="process-step__text">複数案を明瞭に提示・合意</p>
+        <div class="process-step__title">構想検討</div>
+        <p class="process-step__text">最適な仕様・複数案を検討</p>
         <span class="process-step__days">Day 3〜5</span>
       </div>
       <div class="process-step">
         <div class="process-step__num">4</div>
-        <div class="process-step__title">製作・検査</div>
-        <p class="process-step__text">自社工場で設計〜仕上げ一貫</p>
-        <span class="process-step__days">Day 5〜9</span>
+        <div class="process-step__title">見積提出</div>
+        <p class="process-step__text">内訳明示の見積書を提出</p>
+        <span class="process-step__days">Day 5〜6</span>
       </div>
       <div class="process-step">
         <div class="process-step__num">5</div>
+        <div class="process-step__title">承認・注文</div>
+        <p class="process-step__text">注文書受領で製作着手</p>
+        <span class="process-step__days">Day 6〜7</span>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">6</div>
+        <div class="process-step__title">製作</div>
+        <p class="process-step__text">自社工場で設計〜仕上げ一貫</p>
+        <span class="process-step__days">Day 7〜12</span>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">7</div>
         <div class="process-step__title">納品・設置</div>
         <p class="process-step__text">現地取付・動作確認まで対応</p>
-        <span class="process-step__days">Day 10〜</span>
+        <span class="process-step__days">Day 13〜</span>
       </div>
     </div>
   </div>
