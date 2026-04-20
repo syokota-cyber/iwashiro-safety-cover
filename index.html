@@ -540,7 +540,16 @@
       font-size: 12px; color: var(--muted);
       margin-bottom: 28px;
     }
-    .form-submit { width: 100%; font-size: 17px; padding: 18px; border-radius: 10px; }
+    .form-submit {
+      display: block;
+      width: fit-content;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 17px;
+      padding: 18px 56px;
+      border-radius: 10px;
+    }
     .form-trust {
       display: flex; justify-content: center; gap: 28px;
       margin-top: 20px;
@@ -622,6 +631,12 @@
       .pain-grid { grid-template-columns: 1fr; }
       .hero__ctas { flex-direction: column; }
       .btn { width: 100%; justify-content: center; }
+      .btn.form-submit {
+        width: fit-content;
+        max-width: calc(100% - 8px);
+        margin-left: auto;
+        margin-right: auto;
+      }
       .journey__step { grid-template-columns: 70px 44px 1fr; }
       .journey__phase-badge { font-size: 10px; padding: 3px 7px; }
       .hero__stat-grid { grid-template-columns: 1fr 1fr; }
@@ -1040,7 +1055,7 @@
       </h1>
       <p class="hero__lead animate delay-2">
         回転部・駆動部・高温部の露出は、労災リスクと行政指摘の温床です。<br>
-        岩代工業株式会社は<strong>現地確認から最短10営業日</strong>で、ぴったりの設備カバーをオーダーメイド製作します。
+        岩代工業株式会社は<strong>現地確認から迅速に</strong>、ぴったりの設備カバーをオーダーメイド製作します。
       </p>
       <div class="hero__ctas animate delay-3">
         <a href="#inquiry" class="btn btn--primary">
@@ -1065,8 +1080,8 @@
             <div class="hero__stat-label">設備カバー<br>製作実績</div>
           </div>
           <div class="hero__stat">
-            <div class="hero__stat-num">10<span style="font-size:18px;">日</span></div>
-            <div class="hero__stat-label">最短納期<br>（現場確認〜納品）</div>
+            <div class="hero__stat-num"><span style="font-size:clamp(22px,3.2vw,30px);letter-spacing:.04em;">迅速</span></div>
+            <div class="hero__stat-label">納品対応<br>（現場確認〜納品）</div>
           </div>
           <div class="hero__stat">
             <div class="hero__stat-num">98<span style="font-size:18px;">%</span></div>
@@ -1282,7 +1297,7 @@
           <div class="journey__step-title">製作</div>
           <div class="journey__step-desc">
             設計・切断・溶接・仕上げ・検査まで自社完結。外注なしで品質を管理します。<br>
-            <em style="color:var(--accent);font-style:normal;font-weight:700;font-size:13px;">▶ 具体例：改善期限まで3週間のケースで、緊急対応として最短8日で納品実績あり</em>
+            <em style="color:var(--accent);font-style:normal;font-weight:700;font-size:13px;">▶ 具体例：改善期限まで3週間のケースでも、緊急対応のご相談に応じた納品実績があります</em>
           </div>
           <div class="journey__chips">
             <span class="journey__chip">自社工場製作</span>
@@ -1615,8 +1630,8 @@
       </div>
       <div class="cta-card">
         <div class="cta-card__icon">⚡</div>
-        <div class="cta-card__title">４８時間以内（営業稼働日）</div>
-        <div class="cta-card__text">お問い合わせから原則48営業時間以内に担当者よりご連絡</div>
+        <div class="cta-card__title">迅速回答</div>
+        <div class="cta-card__text">お問い合わせ内容を確認し、担当者より早めにご連絡します</div>
       </div>
       <div class="cta-card">
         <div class="cta-card__icon">🔒</div>
@@ -1632,7 +1647,7 @@
         📞 電話で相談する
       </a>
     </div>
-    <p style="margin-top:24px;font-size:13px;color:rgba(255,255,255,.45);">8時30分～17時（土日祝除く）</p>
+    <p style="margin-top:24px;font-size:13px;color:rgba(255,255,255,.45);">8時30分～17時30分（土日祝除く）</p>
   </div>
 </section>
 
@@ -1643,7 +1658,7 @@
       <div class="section-label">Contact Us</div>
       <h2 class="section-title">ご相談・お見積もり</h2>
       <p class="section-lead" style="margin-bottom:48px;">
-        まずはお気軽にご連絡ください。専任担当が48時間以内にご返答します。
+        まずはお気軽にご連絡ください。専任担当が内容を確認のうえ、早めにご返答いたします。
       </p>
     </div>
     <div class="form-layout">
@@ -1652,9 +1667,9 @@
         <img src="images/contact-staff.webp" alt="担当スタッフ" class="form-staff__img" />
         <div class="form-staff__info">
           <div class="form-staff__name">設備カバー 専任担当</div>
-          <div class="form-staff__role">岩代工業株式会社 営業技術部</div>
+          <div class="form-staff__role">岩代工業株式会社 営業部 / 設計部</div>
           <div class="form-staff__msg">
-            「図面がない」「急いでいる」など、どんなご相談もお気軽にどうぞ。48時間以内にご回答します。
+            「図面がない」「急いでいる」など、どんなご相談もお気軽にどうぞ。早めにご回答いたします。
           </div>
         </div>
       </div>
@@ -1699,12 +1714,12 @@
         </div>
         <p class="form-note">※ お問い合わせの内容は、製作・見積もり対応のみに使用します。第三者への提供はいたしません。</p>
         <button type="submit" class="btn btn--primary form-submit">
-          送信する（48時間以内にご回答します）
+          送信する
         </button>
         <div class="form-trust">
           <span>🔒 SSL暗号化通信</span>
           <span>📵 ご相談だけでも歓迎です</span>
-          <span>⚡ 48時間以内に担当者より返信</span>
+          <span>⚡ 担当者より早めに返信</span>
         </div>
       </form>
       </div><!-- /.form-card -->
@@ -1730,7 +1745,7 @@
       </div>
       <div class="faq-item">
         <div class="faq-q">最短でどのくらいで納品できますか？</div>
-        <div class="faq-a">形状・数量によりますが、最短10営業日での納品実績があります。労基署対応などで急を要する場合は、緊急対応枠でのご相談も可能ですので、まずはご連絡ください。</div>
+        <div class="faq-a">形状・数量によりますが、お急ぎの案件にも対応した納品実績がございます。労基署対応などで急を要する場合は、緊急対応枠でのご相談も可能ですので、まずはご連絡ください。</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">1個から対応してもらえますか？</div>
@@ -1746,8 +1761,8 @@
     <div>
       <div class="footer__logo">岩代工業<span>株式会社</span></div>
       <p class="footer__desc">
-        設備の安全を守る設備カバー専門メーカー。<br>
-        図面不要・現地調査無料で、設備担当者の課題をスピード解決します。
+        設備の安全を守る板金加工・機械設計製作のプロフェッショナル。<br>
+        図面不要・現地調査で、設備担当者の課題をスピード解決します。
       </p>
     </div>
     <div>
