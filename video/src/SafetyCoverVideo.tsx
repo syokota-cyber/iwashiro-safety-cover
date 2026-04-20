@@ -66,7 +66,7 @@ export const SafetyCoverVideo: React.FC = () => {
 
       <Sequence from={sec(20.5)} durationInFrames={sec(3)}>
         <SlideWithNarration
-          image={staticFile("images/d10_safecover.jpg")}
+          image={staticFile("images/d10a_safecover.jpg")}
           narration="設計、製作、取付まで一貫対応。分割発注の手戻りをなくします。"
           zoomDirection="in"
           tone="light"
@@ -76,7 +76,7 @@ export const SafetyCoverVideo: React.FC = () => {
       {/* === 第2幕B：レトロフィット (0:23-0:32) === */}
       <Sequence from={sec(23.5)} durationInFrames={sec(4)}>
         <SlideWithNarration
-          image={staticFile("images/d5_safety.jpg")}
+          image={staticFile("images/d5a_safecover.jpg")}
           narration="設備丸ごと入替えますか？後付けカバーなら、大幅にコスト削減できます。"
           zoomDirection="out"
           tone="light"
@@ -85,7 +85,7 @@ export const SafetyCoverVideo: React.FC = () => {
 
       <Sequence from={sec(27.5)} durationInFrames={sec(4.5)}>
         <SlideWithNarration
-          image={staticFile("images/d11_safecover.jpg")}
+          image={staticFile("images/d11a_safecover.jpg")}
           narration="カバー交換と同時に、安全基準も現行レベルへアップグレード。"
           zoomDirection="in"
           tone="light"
