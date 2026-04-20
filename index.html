@@ -385,14 +385,25 @@
       font-size: 14px; font-weight: 700;
       color: var(--navy); margin-bottom: 6px;
     }
-    .process-step__text { font-size: 12px; color: var(--muted); line-height: 1.5; }
-    .process-step__days {
+    .process-step__role {
       display: inline-block;
       margin-top: 8px;
       font-size: 11px; font-weight: 700;
-      color: var(--accent);
-      background: #fff0e8;
       padding: 2px 10px; border-radius: 100px;
+      line-height: 1.4;
+    }
+    .process-step__role--customer {
+      color: var(--blue);
+      background: #e8f0fe;
+    }
+    .process-step__role--company {
+      color: #fff;
+      background: var(--navy);
+    }
+    .process-step__role--both {
+      color: var(--navy);
+      background: #e8ecf4;
+      border: 1px solid rgba(26,74,138,.2);
     }
 
     /* ===== TESTIMONIALS ===== */
@@ -1157,7 +1168,6 @@
           <div class="journey__chips">
             <span class="journey__chip">📞 電話相談</span>
             <span class="journey__chip">📧 メール相談</span>
-            <span class="journey__chip--cta journey__chip">48時間以内回答</span>
           </div>
           <img src="images/journey-step1-consult.jpg" alt="設備担当者が問い合わせをするシーン" class="journey__step-img" />
         </div>
@@ -1226,10 +1236,10 @@
           <div class="journey__step-title">見積提出</div>
           <div class="journey__step-desc">
             確定した仕様をもとに、明瞭な見積書を提出します。材料費・加工費・取付費など内訳を明示するので、社内稟議にもそのまま使えます。<br>
-            <em style="color:var(--accent);font-style:normal;font-weight:700;font-size:13px;">▶ 具体例：見積書は即日〜3営業日で提出。急ぎの場合はご相談ください</em>
+            <em style="color:var(--accent);font-style:normal;font-weight:700;font-size:13px;">▶ 具体例：急ぎの場合はご相談ください</em>
           </div>
           <div class="journey__chips">
-            <span class="journey__chip">見積書は即日〜3日</span>
+            <span class="journey__chip journey__chip--cta">見積書提出</span>
             <span class="journey__chip">内訳明示</span>
           </div>
         </div>
@@ -1271,12 +1281,11 @@
           <div class="journey__step-num">STEP 06</div>
           <div class="journey__step-title">製作</div>
           <div class="journey__step-desc">
-            設計・切断・溶接・仕上げ・検査まで自社完結。外注なしで品質を管理します。製作状況はメールまたはLINEで随時共有するので、納期の見通しが常に分かります。<br>
+            設計・切断・溶接・仕上げ・検査まで自社完結。外注なしで品質を管理します。<br>
             <em style="color:var(--accent);font-style:normal;font-weight:700;font-size:13px;">▶ 具体例：改善期限まで3週間のケースで、緊急対応として最短8日で納品実績あり</em>
           </div>
           <div class="journey__chips">
             <span class="journey__chip">自社工場製作</span>
-            <span class="journey__chip">進捗共有あり</span>
           </div>
           <img src="images/journey-step4-fab.jpg" alt="溶接・製作作業のシーン" class="journey__step-img" />
         </div>
@@ -1320,18 +1329,9 @@
   <div class="container">
     <div class="text-center">
       <div class="section-label">Why Iwashiro</div>
-      <h2 class="section-title">岩代工業株式会社が選ばれる<br>5つの理由</h2>
+      <h2 class="section-title">岩代工業株式会社が選ばれる<br>4つの理由</h2>
     </div>
     <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-card__icon">⚡</div>
-        <div class="feature-card__body">
-          <div class="feature-card__title">スピード対応力</div>
-          <p class="feature-card__text">
-            ご相談から見積もり提示まで最短当日。製作着手も最短翌日から可能です。「急いでいる」を最優先に対応するため、緊急枠を常に確保しています。
-          </p>
-        </div>
-      </div>
       <div class="feature-card">
         <div class="feature-card__icon">🎯</div>
         <div class="feature-card__body">
@@ -1376,52 +1376,45 @@
 <section class="section section--factory-bg">
   <div class="container">
     <div class="text-center">
-      <div class="section-label">Delivery Timeline</div>
-      <h2 class="section-title">最短13日で納品できる<br>製作フロー</h2>
-      <p class="section-lead">無駄な中間工程を省き、自社一貫製作でスピードと品質を両立</p>
+      <div class="section-label">役割分担</div>
+      <h2 class="section-title">製作フローと 役割分担</h2>
+      <p class="section-lead">各工程で、お客様にお願いすることと岩代工業が担うことを分かりやすく示しています。日数は案件により異なります。</p>
     </div>
     <div class="process-steps">
       <div class="process-step">
         <div class="process-step__num">1</div>
         <div class="process-step__title">お問い合わせ</div>
-        <p class="process-step__text">電話・メール・LINEで課題を共有</p>
-        <span class="process-step__days">Day 1</span>
+        <span class="process-step__role process-step__role--customer">お客様</span>
       </div>
       <div class="process-step">
         <div class="process-step__num">2</div>
         <div class="process-step__title">現地確認</div>
-        <p class="process-step__text">現地訪問で設備・環境を確認</p>
-        <span class="process-step__days">Day 2〜3</span>
+        <span class="process-step__role process-step__role--both">弊社・お客様</span>
       </div>
       <div class="process-step">
         <div class="process-step__num">3</div>
         <div class="process-step__title">構想検討</div>
-        <p class="process-step__text">最適な仕様・複数案を検討</p>
-        <span class="process-step__days">Day 3〜5</span>
+        <span class="process-step__role process-step__role--both">お客様・弊社</span>
       </div>
       <div class="process-step">
         <div class="process-step__num">4</div>
         <div class="process-step__title">見積提出</div>
-        <p class="process-step__text">内訳明示の見積書を提出</p>
-        <span class="process-step__days">Day 5〜6</span>
+        <span class="process-step__role process-step__role--company">弊社</span>
       </div>
       <div class="process-step">
         <div class="process-step__num">5</div>
         <div class="process-step__title">承認・注文</div>
-        <p class="process-step__text">注文書受領で製作着手</p>
-        <span class="process-step__days">Day 6〜7</span>
+        <span class="process-step__role process-step__role--customer">お客様</span>
       </div>
       <div class="process-step">
         <div class="process-step__num">6</div>
         <div class="process-step__title">製作</div>
-        <p class="process-step__text">自社工場で設計〜仕上げ一貫</p>
-        <span class="process-step__days">Day 7〜12</span>
+        <span class="process-step__role process-step__role--company">弊社</span>
       </div>
       <div class="process-step">
         <div class="process-step__num">7</div>
         <div class="process-step__title">納品・設置</div>
-        <p class="process-step__text">現地取付・動作確認まで対応</p>
-        <span class="process-step__days">Day 13〜</span>
+        <span class="process-step__role process-step__role--company">弊社</span>
       </div>
     </div>
   </div>
