@@ -350,60 +350,68 @@
     }
     .feature-card__text { font-size: 14px; color: var(--muted); line-height: 1.7; }
 
-    /* ===== PROCESS ===== */
+    /* ===== PROCESS (chevron staircase) ===== */
     .process-steps {
-      display: grid; grid-template-columns: repeat(7, 1fr);
-      gap: 0;
+      display: flex;
+      align-items: stretch;
       position: relative;
-    }
-    .process-steps::before {
-      content: '';
-      position: absolute;
-      top: 36px; left: 10%; right: 10%;
-      height: 2px;
-      background: linear-gradient(to right, var(--accent), var(--blue));
-      z-index: 0;
+      padding-top: 20px;
     }
     .process-step {
+      flex: 1;
+      position: relative;
       text-align: center;
-      padding: 0 12px;
-      position: relative; z-index: 1;
+      padding: 28px 12px 24px;
+      color: #fff;
+      clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%, 20px 50%);
+      margin-left: -10px;
+    }
+    .process-step:first-child {
+      clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 50%, calc(100% - 20px) 100%, 0 100%);
+      margin-left: 0;
+    }
+    .process-step:nth-child(1) { background: #4a7fb5; }
+    .process-step:nth-child(2) { background: #3d6fa8; }
+    .process-step:nth-child(3) { background: #30609b; }
+    .process-step:nth-child(4) { background: #24508e; }
+    .process-step:nth-child(5) { background: #1a4281; }
+    .process-step:nth-child(6) { background: #123574; }
+    .process-step:nth-child(7) { background: #0d2240; }
+    .process-step__label {
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+      opacity: .7; margin-bottom: 2px;
     }
     .process-step__num {
-      width: 72px; height: 72px;
-      border-radius: 50%;
-      background: var(--navy);
-      color: #fff;
-      font-size: 22px; font-weight: 900;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 16px;
-      box-shadow: 0 4px 16px rgba(13,34,64,.25);
-      position: relative;
+      font-size: 32px; font-weight: 900;
+      line-height: 1.1; margin-bottom: 10px;
     }
-    .process-step:first-child .process-step__num { background: var(--accent); }
     .process-step__title {
       font-size: 14px; font-weight: 700;
-      color: var(--navy); margin-bottom: 6px;
+      margin-bottom: 6px;
+    }
+    .process-step__desc {
+      font-size: 11px; opacity: .8; line-height: 1.5;
     }
     .process-step__role {
       display: inline-block;
-      margin-top: 8px;
-      font-size: 11px; font-weight: 700;
+      margin-top: 10px;
+      font-size: 10px; font-weight: 700;
       padding: 2px 10px; border-radius: 100px;
       line-height: 1.4;
     }
     .process-step__role--customer {
-      color: var(--blue);
-      background: #e8f0fe;
+      color: #fff;
+      background: rgba(255,255,255,.2);
+      border: 1px solid rgba(255,255,255,.4);
     }
     .process-step__role--company {
       color: #fff;
-      background: var(--navy);
+      background: rgba(255,255,255,.15);
     }
     .process-step__role--both {
-      color: var(--navy);
-      background: #e8ecf4;
-      border: 1px solid rgba(26,74,138,.2);
+      color: #fff;
+      background: rgba(255,255,255,.2);
+      border: 1px solid rgba(255,255,255,.3);
     }
 
     /* ===== TESTIMONIALS ===== */
@@ -617,8 +625,14 @@
       .hero__visual { display: none; }
       .pain-grid { grid-template-columns: 1fr 1fr; }
       .features-grid { grid-template-columns: 1fr; }
-      .process-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
-      .process-steps::before { display: none; }
+      .process-steps {
+        flex-wrap: wrap; gap: 8px;
+      }
+      .process-step {
+        flex: 1 1 calc(50% - 20px); min-width: 140px;
+        clip-path: none; border-radius: 8px; margin-left: 0;
+      }
+      .process-step:first-child { clip-path: none; }
       .testimonials-grid { grid-template-columns: 1fr; }
       .cta-cards { grid-template-columns: 1fr; max-width: 360px; }
       .form-grid { grid-template-columns: 1fr; }
@@ -1397,38 +1411,52 @@
     </div>
     <div class="process-steps">
       <div class="process-step">
-        <div class="process-step__num">1</div>
+        <div class="process-step__label">STEP</div>
+        <div class="process-step__num">01</div>
         <div class="process-step__title">お問い合わせ</div>
+        <div class="process-step__desc">フォームまたは<br>お電話でご連絡</div>
         <span class="process-step__role process-step__role--customer">お客様</span>
       </div>
       <div class="process-step">
-        <div class="process-step__num">2</div>
+        <div class="process-step__label">STEP</div>
+        <div class="process-step__num">02</div>
         <div class="process-step__title">現地確認</div>
+        <div class="process-step__desc">現場の状況を<br>詳しくお伺い</div>
         <span class="process-step__role process-step__role--both">弊社・お客様</span>
       </div>
       <div class="process-step">
-        <div class="process-step__num">3</div>
+        <div class="process-step__label">STEP</div>
+        <div class="process-step__num">03</div>
         <div class="process-step__title">構想検討</div>
+        <div class="process-step__desc">最適な<br>ソリューションを<br>ご提案</div>
         <span class="process-step__role process-step__role--both">お客様・弊社</span>
       </div>
       <div class="process-step">
-        <div class="process-step__num">4</div>
-        <div class="process-step__title">見積提出</div>
+        <div class="process-step__label">STEP</div>
+        <div class="process-step__num">04</div>
+        <div class="process-step__title">見積・承認</div>
+        <div class="process-step__desc">詳細設計と<br>お見積りを提出</div>
         <span class="process-step__role process-step__role--company">弊社</span>
       </div>
       <div class="process-step">
-        <div class="process-step__num">5</div>
-        <div class="process-step__title">承認・注文</div>
-        <span class="process-step__role process-step__role--customer">お客様</span>
-      </div>
-      <div class="process-step">
-        <div class="process-step__num">6</div>
+        <div class="process-step__label">STEP</div>
+        <div class="process-step__num">05</div>
         <div class="process-step__title">製作</div>
+        <div class="process-step__desc">自社工場にて<br>製造を開始</div>
         <span class="process-step__role process-step__role--company">弊社</span>
       </div>
       <div class="process-step">
-        <div class="process-step__num">7</div>
+        <div class="process-step__label">STEP</div>
+        <div class="process-step__num">06</div>
         <div class="process-step__title">納品・設置</div>
+        <div class="process-step__desc">現地での設置と<br>試運転</div>
+        <span class="process-step__role process-step__role--company">弊社</span>
+      </div>
+      <div class="process-step">
+        <div class="process-step__label">STEP</div>
+        <div class="process-step__num">07</div>
+        <div class="process-step__title">アフターフォロー</div>
+        <div class="process-step__desc">長期的なサポートを<br>ご提供</div>
         <span class="process-step__role process-step__role--company">弊社</span>
       </div>
     </div>
