@@ -1964,19 +1964,46 @@
     observer.observe(el);
   });
 
-  // フォーム送信：入力内容をメール本文にして mailto で開く
-  document.getElementById('inquiry-form').addEventListener('submit', function(e) {
+  // フォーム送信：Cloudflare Pages Function → GAS → Spreadsheet & メール通知
+  document.getElementById('inquiry-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     const form = this;
-    const subject = encodeURIComponent('【設備カバー】お問い合わせ');
-    const parts = [];
-    ['会社名', 'お名前', '電話番号', 'メールアドレス', 'ご相談内容', '詳細・ご要望'].forEach(function(name) {
+    const btn = form.querySelector('.form-submit');
+    const fields = ['会社名', 'お名前', '電話番号', 'メールアドレス', 'ご相談内容', '詳細・ご要望'];
+    const data = {};
+    fields.forEach(function(name) {
       const el = form.querySelector('[name="' + name + '"]');
-      if (el && el.value) parts.push(name + '：' + el.value.replace(/\r?\n/g, ' '));
+      if (el) data[name] = el.value;
     });
-    const body = encodeURIComponent(parts.join('\n'));
-    const mailto = 'mailto:customer@iwashiro.co.jp?subject=' + subject + '&body=' + body;
-    window.location.href = mailto;
+
+    btn.disabled = true;
+    btn.textContent = '送信中...';
+
+    try {
+      const res = await fetch('/api/inquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const result = await res.json();
+      if (result.ok) {
+        form.innerHTML = '<div style="text-align:center;padding:48px 0;">'
+          + '<div style="font-size:48px;margin-bottom:16px;">✅</div>'
+          + '<h3 style="color:var(--navy);margin-bottom:12px;">お問い合わせを受け付けました</h3>'
+          + '<p style="color:var(--muted);">担当者より早めにご連絡いたします。</p></div>';
+      } else {
+        throw new Error(result.error || '送信失敗');
+      }
+    } catch (err) {
+      // フォールバック：mailto で送信
+      const subject = encodeURIComponent('【設備カバー】お問い合わせ');
+      const parts = [];
+      fields.forEach(function(name) { if (data[name]) parts.push(name + '：' + data[name].replace(/\r?\n/g, ' ')); });
+      const body = encodeURIComponent(parts.join('\n'));
+      window.location.href = 'mailto:customer@iwashiro.co.jp?subject=' + subject + '&body=' + body;
+      btn.disabled = false;
+      btn.textContent = '送信する';
+    }
   });
 </script>
 
