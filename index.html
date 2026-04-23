@@ -755,6 +755,99 @@
     }
     .section--factory-bg .container { position: relative; z-index: 1; }
 
+    /* ===== VIDEO SECTION ===== */
+    .video-section {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    .video-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(13,34,64,.95) 0%, rgba(26,74,138,.85) 100%);
+      z-index: 0;
+    }
+    .video-section .container { position: relative; z-index: 1; }
+    .video-wrap {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 40px rgba(0,0,0,.35);
+      max-width: 860px;
+      margin: 0 auto;
+      cursor: pointer;
+    }
+    .video-wrap iframe,
+    .video-wrap__poster {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+    .video-wrap__poster {
+      object-fit: cover;
+      display: block;
+    }
+    .video-wrap__overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.40) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      transition: background .25s;
+    }
+    .video-wrap:hover .video-wrap__overlay {
+      background: linear-gradient(180deg, rgba(0,0,0,.05) 0%, rgba(0,0,0,.25) 100%);
+    }
+    .video-wrap__play {
+      width: 80px; height: 80px;
+      background: rgba(232,101,10,.92);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,.35);
+      transition: transform .2s, background .2s;
+    }
+    .video-wrap:hover .video-wrap__play {
+      transform: scale(1.1);
+      background: rgba(232,101,10,1);
+    }
+    .video-wrap__play::after {
+      content: '';
+      display: block;
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: 14px 0 14px 26px;
+      border-color: transparent transparent transparent #fff;
+      margin-left: 4px;
+    }
+    .video-wrap__label {
+      position: absolute;
+      bottom: 20px; right: 20px;
+      background: rgba(0,0,0,.6);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 6px;
+      z-index: 2;
+      letter-spacing: .03em;
+    }
+    .video-caption {
+      max-width: 860px;
+      margin: 28px auto 0;
+      text-align: center;
+      font-size: 15px;
+      color: rgba(255,255,255,.7);
+      line-height: 1.8;
+    }
+    .video-cta {
+      text-align: center;
+      margin-top: 32px;
+    }
+
     /* ===== PRODUCT SHOWCASE ===== */
     .showcase-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
@@ -1161,6 +1254,29 @@
     </div>
     <div style="text-align:center;">
       <a href="#inquiry" class="btn btn--navy" style="font-size:15px;">→ これらの課題、お気軽にご相談ください</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VIDEO ===== -->
+<section class="section video-section" id="video">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label" style="color:var(--accent2);">Movie</div>
+      <h2 class="section-title" style="color:#fff;">90秒でわかる<br>設備カバーの必要性</h2>
+    </div>
+    <div class="video-wrap" id="videoFacade" onclick="(function(el){el.innerHTML='<iframe src=\'https://www.youtube.com/embed/LksG7Hrty1M?autoplay=1\' allow=\'accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share\' allowfullscreen></iframe>';el.style.cursor='default';el.onclick=null;})(this)">
+      <img class="video-wrap__poster" src="video/public/images/d7_safety.jpg" alt="設備カバー PR動画 — 現場での採寸の様子" loading="lazy">
+      <div class="video-wrap__overlay">
+        <div class="video-wrap__play"></div>
+      </div>
+      <div class="video-wrap__label">▶ 1:30</div>
+    </div>
+    <p class="video-caption">
+      コンベアのつなぎ目にカバーがない現場のリスクから、後付け安全カバーによる解決策までをご紹介しています。
+    </p>
+    <div class="video-cta">
+      <a href="#inquiry" class="btn btn--primary">ご相談・お見積もり（無料） →</a>
     </div>
   </div>
 </section>
