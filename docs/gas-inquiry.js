@@ -11,6 +11,13 @@ var NOTIFY_TO = "customer@iwashiro.co.jp";
 function doPost(e) {
   try {
     var data = JSON.parse(e.postData.contents);
+    var email = (data["メールアドレス"] || "").toString().trim();
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!emailOk) {
+      return ContentService.createTextOutput(
+        JSON.stringify({ ok: false, error: "メールアドレスは必須です" })
+      ).setMimeType(ContentService.MimeType.JSON);
+    }
 
     // --- Spreadsheet に追記 ---
     var ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -35,7 +42,7 @@ function doPost(e) {
       data["会社名"] || "",
       data["お名前"] || "",
       data["電話番号"] || "",
-      data["メールアドレス"] || "",
+      email,
       data["ご相談内容"] || "",
       data["詳細・ご要望"] || "",
       "未対応",
@@ -48,7 +55,7 @@ function doPost(e) {
     body += "会社名: " + (data["会社名"] || "") + "\n";
     body += "お名前: " + (data["お名前"] || "") + "\n";
     body += "電話番号: " + (data["電話番号"] || "") + "\n";
-    body += "メールアドレス: " + (data["メールアドレス"] || "") + "\n";
+    body += "メールアドレス: " + email + "\n";
     body += "ご相談内容: " + (data["ご相談内容"] || "") + "\n";
     body += "詳細・ご要望: " + (data["詳細・ご要望"] || "") + "\n";
     body += "\n---\n";
@@ -58,6 +65,7 @@ function doPost(e) {
     MailApp.sendEmail({
       to: NOTIFY_TO,
       subject: "【設備カバー】お問い合わせ: " + (data["会社名"] || "（会社名なし）"),
+      replyTo: email,
       body: body,
     });
 
