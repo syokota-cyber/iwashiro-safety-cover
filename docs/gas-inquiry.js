@@ -69,6 +69,37 @@ function doPost(e) {
       body: body,
     });
 
+    // --- 自動返信（問い合わせ者へ） ---
+    var replyBody = "";
+    replyBody += (data["お名前"] || "") + " 様\n\n";
+    replyBody += "この度はお問い合わせいただき、誠にありがとうございます。\n";
+    replyBody += "以下の内容で承りました。\n\n";
+    replyBody += "━━━━━━━━━━━━━━━━━━━━\n";
+    replyBody += "受付日時: " + now + "\n";
+    replyBody += "会社名: " + (data["会社名"] || "") + "\n";
+    replyBody += "お名前: " + (data["お名前"] || "") + "\n";
+    replyBody += "電話番号: " + (data["電話番号"] || "") + "\n";
+    replyBody += "ご相談内容: " + (data["ご相談内容"] || "") + "\n";
+    replyBody += "詳細・ご要望: " + (data["詳細・ご要望"] || "") + "\n";
+    replyBody += "━━━━━━━━━━━━━━━━━━━━\n\n";
+    replyBody += "担当者より改めてご連絡いたしますので、\n";
+    replyBody += "今しばらくお待ちくださいませ。\n\n";
+    replyBody += "※ このメールは自動送信です。本メールへの返信はできません。\n";
+    replyBody += "  ご不明点がございましたら下記までご連絡ください。\n\n";
+    replyBody += "─────────────────────\n";
+    replyBody += "岩城工業株式会社\n";
+    replyBody += "TEL: 0250-62-1477\n";
+    replyBody += "Email: customer@iwashiro.co.jp\n";
+    replyBody += "─────────────────────\n";
+
+    MailApp.sendEmail({
+      to: email,
+      name: "岩城工業 設備カバー",
+      subject: "【岩城工業】お問い合わせを受け付けました",
+      body: replyBody,
+      noReply: true,
+    });
+
     return ContentService.createTextOutput(
       JSON.stringify({ ok: true })
     ).setMimeType(ContentService.MimeType.JSON);
