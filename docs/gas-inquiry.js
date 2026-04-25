@@ -11,11 +11,26 @@ var NOTIFY_TO = "customer@iwashiro.co.jp";
 function doPost(e) {
   try {
     var data = JSON.parse(e.postData.contents);
+    var stripTags = function(s) { return String(s || "").replace(/<[^>]*>/g, "").trim(); };
+    var urlPattern = /https?:\/\/|www\./i;
+
+    var fields = ["会社名","お名前","電話番号","メールアドレス","ご相談内容","詳細・ご要望"];
+    for (var i = 0; i < fields.length; i++) {
+      if (data[fields[i]] !== undefined) data[fields[i]] = stripTags(data[fields[i]]);
+    }
+
     var email = (data["メールアドレス"] || "").toString().trim();
     var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     if (!emailOk) {
       return ContentService.createTextOutput(
         JSON.stringify({ ok: false, error: "メールアドレスは必須です" })
+      ).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    var detail = data["詳細・ご要望"] || "";
+    if (detail.length > 500 || urlPattern.test(detail)) {
+      return ContentService.createTextOutput(
+        JSON.stringify({ ok: false, error: "詳細欄にURLは入力できません（500文字以内）" })
       ).setMimeType(ContentService.MimeType.JSON);
     }
 

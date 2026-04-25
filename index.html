@@ -544,6 +544,7 @@
     }
     select.form-control { cursor: pointer; }
     textarea.form-control { resize: vertical; min-height: 120px; }
+    .char-count { display: block; text-align:right; font-size:12px; color:var(--muted); margin-top:4px; }
     .form-note {
       font-size: 12px; color: var(--muted);
       margin-bottom: 28px;
@@ -1823,19 +1824,19 @@
         <div class="form-grid">
           <div class="form-group">
             <label class="form-label">会社名<span>*</span></label>
-            <input type="text" name="会社名" class="form-control" placeholder="例：株式会社○○製作所" required />
+            <input type="text" name="会社名" class="form-control" placeholder="例：株式会社○○製作所" required maxlength="100" />
           </div>
           <div class="form-group">
             <label class="form-label">お名前<span>*</span></label>
-            <input type="text" name="お名前" class="form-control" placeholder="例：山田 太郎" required />
+            <input type="text" name="お名前" class="form-control" placeholder="例：山田 太郎" required maxlength="50" />
           </div>
           <div class="form-group">
             <label class="form-label">電話番号<span>*</span></label>
-            <input type="tel" name="電話番号" class="form-control" placeholder="例：06-0000-0000" required />
+            <input type="tel" name="電話番号" class="form-control" placeholder="例：06-0000-0000" required maxlength="20" />
           </div>
           <div class="form-group">
             <label class="form-label">メールアドレス<span>*</span></label>
-            <input type="email" name="メールアドレス" class="form-control" placeholder="例：yamada@example.com" required autocomplete="email" />
+            <input type="email" name="メールアドレス" class="form-control" placeholder="例：yamada@example.com" required maxlength="254" autocomplete="email" />
           </div>
           <div class="form-group form-group--full">
             <label class="form-label">ご相談内容<span>*</span></label>
@@ -1853,7 +1854,8 @@
           </div>
           <div class="form-group form-group--full">
             <label class="form-label">詳細・ご要望（任意）</label>
-            <textarea name="詳細・ご要望" class="form-control" placeholder="設備の種類、形状、緊急度、写真の送付希望など、なんでもお書きください。"></textarea>
+            <textarea name="詳細・ご要望" class="form-control" maxlength="500" placeholder="設備の種類、形状、緊急度、写真の送付希望など、なんでもお書きください。"></textarea>
+            <span class="char-count" id="detailCount">0 / 500</span>
           </div>
         </div>
         <p class="form-note">※ お問い合わせの内容は、製作・見積もり対応のみに使用します。第三者への提供はいたしません。</p>
@@ -1964,21 +1966,37 @@
     observer.observe(el);
   });
 
+  // 文字カウンター
+  (function() {
+    var ta = document.querySelector('[name="詳細・ご要望"]');
+    var counter = document.getElementById('detailCount');
+    if (ta && counter) {
+      ta.addEventListener('input', function() {
+        counter.textContent = ta.value.length + ' / 500';
+      });
+    }
+  })();
+
   // フォーム送信：Cloudflare Pages Function → GAS → Spreadsheet & メール通知
   document.getElementById('inquiry-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     const form = this;
     const btn = form.querySelector('.form-submit');
     const fields = ['会社名', 'お名前', '電話番号', 'メールアドレス', 'ご相談内容', '詳細・ご要望'];
+    const urlPattern = /https?:\/\/|www\./i;
+    const stripTags = function(s) { return s.replace(/<[^>]*>/g, ''); };
     const data = {};
     fields.forEach(function(name) {
       const el = form.querySelector('[name="' + name + '"]');
-      if (el) data[name] = el.value;
+      if (el) data[name] = stripTags(el.value);
     });
 
-    // HTML5のrequired/type=emailに加えて、軽いガード（未入力時の送信を防ぐ）
     if (!data['メールアドレス']) {
       alert('メールアドレスは必須です');
+      return;
+    }
+    if (urlPattern.test(data['詳細・ご要望'] || '')) {
+      alert('URLの入力はご遠慮ください');
       return;
     }
 
